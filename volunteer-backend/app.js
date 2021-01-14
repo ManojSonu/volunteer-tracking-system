@@ -12,7 +12,7 @@ const staffRouters = require('./app/routes/staff');
 const volunteerRouter = require('./app/routes/volunteerRoute');
 
 const isStaff = require('./app/routes/gaurds/is-staff.guard');
-const  protectRoutes = require('./app/routes/gaurds/protect-routes'); 
+const protectRoutes = require('./app/routes/gaurds/protect-routes');
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
-app.use( express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(
   session({
@@ -49,7 +49,7 @@ app.use('/api/auth/login', authRoutes);
 app.use('/api/auth/register', registerRoutes);
 app.use('/api/auth/staff', isStaff, staffRouters);
 app.use('/api/auth/volunteer', protectRoutes, volunteerRouter);
-app.use('/', function(req, res) {
+app.use('/', function (req, res) {
   res.send('Volunteer Tracking | Version: 1.0.0');
 })
 

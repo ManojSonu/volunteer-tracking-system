@@ -9,22 +9,20 @@ const storage = multer.diskStorage({
     callback(null, 'public/images');
   },
   filename: function (req, file, callback) {
-    console.log('storage', file);
-    callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname + '.jpg');;
+    callback(null, file.originalname + "_" + Date.now() + '.jpg');;
   }
 });
 
 router.post('/:id/update-volunteer', (req, res) => {
   const userId = req.params.id;
-  console.log('req.decoded', req.decoded);
-  console.log(userId)
   User.findOne({ $or: [{ phone: userId }, { aadhar: userId }] }).then(user => {
     if (user) {
       const newVolunteer = new Volunteer({
         volunteer: user._id,
         dateOfParticipaion: req.body.dateOfParticipaion,
         daysToBeBlocked: req.body.daysToBeBlocked,
-        lastSampleCollectionDate: req.body.lastSampleCollectionDate
+        lastSampleCollectionDate: req.body.lastSampleCollectionDate,
+        volunteerPhoto: req.body.volunteerPhoto
       })
       newVolunteer.save().then(dbResponse => {
         const enrollBlockedDays = checkIsEnrollBlocked([dbResponse]) || 0;
@@ -58,7 +56,6 @@ router.post('/:id/update-volunteer', (req, res) => {
 });
 
 router.post('/:id/add-volunteer-photo', (req, res) => {
-  console.log('add-volunteer-photo1', req.params);
   const userId = req.params.id;
   User.findOne({ $or: [{ phone: userId }, { aadhar: userId }] }).then(user => {
     if (user) {
@@ -76,7 +73,10 @@ router.post('/:id/add-volunteer-photo', (req, res) => {
           });
         } else {
           return res.send({
-            success: true
+            success: true,
+            data: {
+              volunteerPhoto: req.file.filename
+            }
           })
         }
       });

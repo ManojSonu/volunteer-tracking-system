@@ -1,0 +1,70 @@
+<div class="page">
+  <div class="page-bg">
+    <h1>Volunteer Tracking</h1>
+  </div>
+  <div class="page-form">
+    <div class="login-container">
+      <div class="card-body">
+        <h5 class="card-title">Register</h5>
+        <form [formGroup]="registerForm" (ngSubmit)="!disableSubmit && register()" autocomplete="off">
+          <div class="form-group">
+            <label for="name"><i class="fa fa-user"></i> Name</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="phone"><div class="fa fa-phone"></div> Phone</label>
+            <input type="text" id="phone" class="form-control" formControlName="phone">
+          </div>
+          <div class="form-group">
+            <label for="aadhaar"><i class="fa fa-id-card-o"></i> Aadhaar</label>
+            <input type="text" id="aadhaar" class="form-control" formControlName="aadhar">
+          </div>
+          <div class="form-group">
+            <label for="newpassword"><i class="fa fa-unlock-alt"></i> Password</label>
+            <input type="password" id="newpassword" class="form-control" formControlName="password">
+          </div>
+          <div class="form-group">
+            <label for="address"><i class="fa fa-home"></i> Address</label>
+            <textarea type="text" id="address" class="form-control" formControlName="address"></textarea>
+          </div>
+          <div class="form-group" *ngIf="isAdmin">
+            <label for="userType">User Type</label>
+            <select class="form-select form-control" id="userType" formControlName="type">
+              <option value="volunteer">Volunteer</option>
+              <option value="staff">Staff</option>
+            </select>
+          </div>
+          <div class="d-flex space-between">
+            <button type="submit" [disabled]="disableSubmit" class="btn btn-block btn-primary">
+              <i class="fa fa-sign-in"></i>  Register
+            </button>
+          </div>
+        </form>
+        <div style="margin-top: 15px;" *ngIf="showError">
+          <div class="form-error text-danger">
+            <span [class.active]="showError">{{error}}</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 0 20px 20px" class="text-center" *ngIf="!isStaff">
+        <a routerLink="/login" class="btn btn-link">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <header>
+  <div class="d-flex justify-content-between align-items-center w-100">
+    <div class="logo">
+      <a *ngIf="currentUser?.type !== 'volunteer'" href="/dashboard">Volunteer Tracking</a>
+      <a *ngIf="currentUser?.type === 'volunteer'" href="/login">Volunteer Tracking</a>
+    </div>
+    <ng-container *ngIf="currentUser">
+      <div *ngIf="currentUser.type !== 'volunteer'">
+        <span><span class="user-name">{{currentUser?.name}}</span> | <span
+          class="user-type">{{currentUser?.type}}</span></span>
+        <a class="btn btn-light ml-2" routerLink="/login">Logout</a>
+      </div>
+    </ng-container>
+  </div>
+</header> -->
+

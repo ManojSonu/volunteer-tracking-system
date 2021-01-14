@@ -1,0 +1,20 @@
+<div style="text-align:center">
+  <div style="width: 220px; height: 220px; overflow: hidden; margin: 0 auto;">
+    <webcam [height]="220" [width]="220" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+      *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+      [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)">
+    </webcam>
+    <img *ngIf="!showWebcam" [src]="imageUrl" alt="" width="220px" height="220px">
+    <br />
+  </div>
+  <div class="actionBtn" *ngIf="showWebcam" title="Take Picture">
+    <div class="btn btn-sm btn-primary" (click)="triggerSnapshot();">
+      Take Picture
+    </div>
+  </div>
+  <div class="actionBtn" *ngIf="!showWebcam">
+    <div class="btn btn-sm btn-primary" (click)="showWebcam = true">
+      Switch Camera
+    </div>
+  </div>
+</div>

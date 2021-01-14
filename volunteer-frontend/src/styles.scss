@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "bootstrap";
+
+$primary: #3f51b5;
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(0deg, rgb(0, 0, 0, .6), rgb(0, 0, 0, .6)), url('assets/images/bg.jpg');
+}
+
+video {
+  border: 1px solid lightgrey;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.page {
+  display: flex;
+  background: #fff;
+}
+
+.page-bg {
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  // background: url('assets/images/bg.jpg');
+  background-image: linear-gradient(0deg, rgb(48, 79, 251, .3), rgb(48, 79, 251, .3)), url('assets/images/bg.jpg');
+}
+
+.page-bg h1 {
+  color: #fff;
+  text-transform: uppercase;
+  margin-left: 30px;
+  margin-top: 30px;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
+}
+
+.page-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+
+.login-container {
+  max-width: 480px;
+  background: #fff;
+  flex: 1;
+}
+
+header {
+  background: $primary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding: 15px 20px;
+
+  .logo {
+    font-size: 1.2rem;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+  }
+}
+
+.user-info {
+  text-transform: capitalize;
+  letter-spacing: .6px;
+}
+
+.user-name {
+  text-transform: capitalize;
+}
+
+.user-type {
+  font-size: .85rem;
+  text-transform: uppercase;
+}
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.volunteer-search {
+  .btn-default {
+    cursor: pointer;
+    pointer-events: none;
+  }
+}
+
+// Utilities

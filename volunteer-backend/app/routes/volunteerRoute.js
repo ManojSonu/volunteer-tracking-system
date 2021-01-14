@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
                 return ({
                     dateOfParticipaion: itm.dateOfParticipaion,
                     daysToBeBlocked: itm.daysToBeBlocked,
-                    lastSampleCollectionDate: itm.lastSampleCollectionDate
+                    lastSampleCollectionDate: itm.lastSampleCollectionDate,
+                    volunteerPhoto: itm.volunteerPhoto
                 })
             })
             return res.status(200).json({

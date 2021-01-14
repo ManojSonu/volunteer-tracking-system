@@ -7,8 +7,9 @@ const VolunteerSchema = new Schema({
         ref: 'User',
     },
     dateOfParticipaion: Date,
-    daysToBeBlocked:Number,
+    daysToBeBlocked: Number,
     lastSampleCollectionDate: Date,
+    volunteerPhoto: String,
     createdOn: {
         type: Date,
         default: Date.now
