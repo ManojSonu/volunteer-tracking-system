@@ -1,0 +1,30 @@
+.fa {
+  opacity: .5;
+}
+
+button .fa {
+  opacity: 1;
+}
+
+
+.form-group {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+.form-control {
+  border: 0;
+  border-bottom: 2px solid #007bfb;
+}
+
+
+input:-webkit-autofill {
+  border-bottom: 2px solid #007bfb;
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 1) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
