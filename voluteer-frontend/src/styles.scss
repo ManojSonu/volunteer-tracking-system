@@ -104,4 +104,13 @@ header {
   }
 }
 
+.table {
+  tbody th, td {
+    vertical-align: middle;
+  }
+  img{
+    width: 60px;
+  }
+}
+
 // Utilities

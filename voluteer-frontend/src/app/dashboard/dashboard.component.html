@@ -142,6 +142,7 @@
                 <th scope="col">Participated On</th>
                 <th scope="col">Blocked For</th>
                 <th scope="col">Sample Collected On</th>
+                <th scope="col">Photo</th>
               </tr>
             </thead>
             <tbody>
@@ -150,6 +151,9 @@
                 <td>{{vol.dateOfParticipaion | date}}</td>
                 <td>{{vol.daysToBeBlocked}} days</td>
                 <td>{{vol.lastSampleCollectionDate | date}}</td>
+                <td>
+                  <img [src]="vol.imgUrl" alt="">
+                </td>
               </tr>
               <tr *ngIf="!volunteerData.length">
                 <td colspan="4" class="text-center">No Data Available</td>

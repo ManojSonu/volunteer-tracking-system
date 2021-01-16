@@ -3,6 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { VolunteerService } from '../services/volunteer';
 import * as html2pdf from 'html2pdf.js';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,7 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
       this.vs.getVolunteerTable().subscribe(
         res => {
-          this.volunteerData = res.data;
+          this.volunteerData = this.setImgUrl(res.data);
           this.dataFetched = true;
         }
       );
@@ -57,13 +58,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  setImgUrl(data) {
+    return data.map(itm => {
+      console.log('this.volunteerData', itm);
+      itm.imgUrl = environment.imagesUrl + itm.volunteerPhoto;
+      return itm;
+    });
+  }
+
   getVolunteerInfo() {
     this.errorMessage = null;
     this.vs.getVolunteerDetails(this.searchVolunteer).subscribe(
       res => {
         if (res.user) {
           this.volunteerInfo = res.user;
-          this.volunteerData = res.data;
+          this.volunteerData = this.setImgUrl(res.data);
           this.blockedDays = res.enrollBlockedDays;
           this.dataFetched = true;
           this.volunteerInfo.volunteerPhoto = res.data[0] && res.data[0].volunteerPhoto;
@@ -83,7 +92,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     };
     this.vs.postEnrollment(this.searchVolunteer, data).subscribe(
       res => {
-        this.volunteerData.unshift(res.data);
+        this.volunteerData.unshift(this.setImgUrl([res.data])[0]);
         this.blockedDays = res.enrollBlockedDays;
         this.dateOfParticipaion = null;
         this.daysToBeBlocked = 90;
